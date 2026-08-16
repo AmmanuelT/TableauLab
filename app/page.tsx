@@ -4,7 +4,7 @@ import { AppShell,Splitter, rem, Group, Text, Container, useMantineTheme, useMan
 import { useDisclosure, useHeadroom } from '@mantine/hooks';
 import { mantineTheme } from './theme'
 import { HeaderSimple } from '../components/layout/header'
-import { TableauEditor } from '@/components/table_editor/tableEditor';
+import { TableauEditor } from '@/components/tableau_editor/tableauEditor';
 import Image from 'next/image'
 import logo from './icon1.png'
 import {
@@ -34,7 +34,6 @@ export default function Home() {
   }, [computedColorScheme]);
   const destColorMode = computedColorScheme === "light" ? "dark" : "light"
   const activeStyle = {
-  backgroundColor: theme.variantColorResolver,
   color: theme.primaryColor
   } 
   const items = links.map((link) => {
@@ -66,7 +65,7 @@ export default function Home() {
         </Group>
         <Group>
           <Tooltip label="Source Code">
-            <ActionIcon component={"a"} target="_blank" href={"https://github.com/lucid-brndmg/cyclone-online-editor"} size={"lg"} variant="default" aria-label="Source Code">
+            <ActionIcon component={"a"} target="_blank" href={""} size={"lg"} variant="default" aria-label="Source Code">
               <IconBrandGithub style={{ width: '70%', height: '70%' }} stroke={1.5} />
             </ActionIcon>
           </Tooltip>
@@ -95,9 +94,9 @@ export default function Home() {
       <div className="pt-60" >
     <Splitter >
       <Splitter.Pane defaultSize={50} bg="blue">
-        <TableauEditor/>
+        
       </Splitter.Pane>
-      <Splitter.Pane defaultSize={50} bg="teal">
+      <Splitter.Pane defaultSize={50} >
         <TableauEditor/>
       </Splitter.Pane>
     </Splitter>
