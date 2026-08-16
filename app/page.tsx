@@ -91,13 +91,13 @@ export default function Home() {
     </AppShell.Header>
 
     <AppShell.Main mt="x" pt="60">
-      <div className="pt-60" >
-    <Splitter >
-      <Splitter.Pane defaultSize={50} bg="blue">
+      <div className="pt-60 p-30" >
+    <Splitter>
+      <Splitter.Pane defaultSize={50} p="30">
         
       </Splitter.Pane>
-      <Splitter.Pane defaultSize={50} >
-        <TableauEditor/>
+      <Splitter.Pane defaultSize={50} p="30">
+        <TableauEditor size={10} />
       </Splitter.Pane>
     </Splitter>
     </div>
