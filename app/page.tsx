@@ -1,6 +1,9 @@
 'use client';
 import { useState, useEffect } from 'react'; 
-import { AppShell,Splitter, rem, Group, Text, Container, useMantineTheme, useMantineColorScheme, useComputedColorScheme, Tooltip, ActionIcon, } from '@mantine/core';
+import { AppShell,Splitter,Paper, Title, rem, Group, Text, Container, useMantineTheme, useMantineColorScheme, useComputedColorScheme, Tooltip, ActionIcon, Stack, } from '@mantine/core';
+import { Split } from '@gfazioli/mantine-split-pane';
+import '@gfazioli/mantine-split-pane/styles.css';
+import '@gfazioli/mantine-split-pane/styles.layer.css';
 import { useDisclosure, useHeadroom } from '@mantine/hooks';
 import { mantineTheme } from './theme'
 import { HeaderSimple } from '../components/layout/header'
@@ -58,7 +61,7 @@ export default function Home() {
     <AppShell.Header className='flex items-center justify-around' >
       <Group h='100%' className="flex items-center gap-4" >
        <Image src={logo} alt="Site Logo" width={45} style={{borderRadius:5}}/>
-      <Text w="fit-content" visibleFrom="sm" h="fit-content" size='xl' > Tableau Lab</Text>
+      <Title w="fit-content" visibleFrom="sm" h="fit-content" size='xl' > Tableau Lab</Title>
       </Group>
       <Group>
           {items}
@@ -90,17 +93,22 @@ export default function Home() {
         </Group>
     </AppShell.Header>
 
-    <AppShell.Main mt="x" pt="60">
-      <div className="pt-60 p-30" >
-    <Splitter>
-      <Splitter.Pane defaultSize={50} p="30">
-        
-      </Splitter.Pane>
-      <Splitter.Pane defaultSize={50} p="30">
+    <AppShell.Main h="100%">
+      <Stack h="100%">
+    <Split >
+      <Split.Pane >
+        <Paper  withBorder>
+            <Title>Pane 1a</Title>
+          </Paper>
+      </Split.Pane>
+      <Split.Resizer />
+      <Split.Pane >
+        <Paper >
         <TableauEditor size={10} />
-      </Splitter.Pane>
-    </Splitter>
-    </div>
+        </Paper>
+      </Split.Pane>
+    </Split>
+    </Stack>
     </AppShell.Main>
   </AppShell>
   
