@@ -15,6 +15,7 @@ import {
   IconBrightnessUp, IconHelpCircle, IconMoon,
   IconSettings
 } from "@tabler/icons-react";
+import Editor from '@monaco-editor/react';
 
 const links = [
   { link: '', label: 'Home' },
@@ -30,10 +31,10 @@ export default function Home() {
   const theme = useMantineTheme();
   const { setColorScheme } = useMantineColorScheme();
   const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
-  const [nextJsPleasedColorScheme, setNextJsPleasedColorScheme] = useState("light")
+  const [nextJsColorScheme, setNextJsColorScheme] = useState("light")
   const [helpOpened, setHelpOpened] = useState(false);
   useEffect(() => {
-    setNextJsPleasedColorScheme(computedColorScheme)
+    setNextJsColorScheme(computedColorScheme)
   }, [computedColorScheme]);
   const destColorMode = computedColorScheme === "light" ? "dark" : "light"
   const activeStyle = {
@@ -84,7 +85,7 @@ export default function Home() {
           <Tooltip label={`Switch to ${destColorMode} mode`}>
             <ActionIcon size={"lg"} onClick={() => setColorScheme(destColorMode)} variant="default" aria-label="Toggle Color Mode">
               {
-                nextJsPleasedColorScheme === "light"
+                nextJsColorScheme === "light"
                   ? <IconMoon style={{ width: '70%', height: '70%' }} stroke={1.5} />
                   : <IconBrightnessUp style={{ width: '70%', height: '70%' }} stroke={1.5} />
               }
@@ -95,14 +96,14 @@ export default function Home() {
 
     <AppShell.Main h="100%">
       <Stack h="100%">
-    <Split >
-      <Split.Pane >
-        <Paper  withBorder>
-            <Title>Pane 1a</Title>
+    <Split autoResizers w="100%" h="100%">
+      <Split.Pane w="100%" h="80vh">
+        <Paper  withBorder w="100%" h="90vh">
+            <Editor theme={destColorMode=== "light" ? "vs-dark": "light" } defaultLanguage="latex" defaultValue="// some comment" />
           </Paper>
       </Split.Pane>
-      <Split.Resizer />
-      <Split.Pane >
+      <Split.Resizer h="70%"/>
+      <Split.Pane w="100%" h="90%" >
         <Paper >
         <TableauEditor size={10} />
         </Paper>
