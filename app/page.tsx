@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useState, useEffect } from 'react'; 
 import { AppShell,Splitter,Paper, Title, rem, Group, Text, Container, useMantineTheme, useMantineColorScheme, useComputedColorScheme, Tooltip, ActionIcon, Stack, } from '@mantine/core';
 import { Split } from '@gfazioli/mantine-split-pane';
@@ -15,14 +15,17 @@ import {
   IconBrightnessUp, IconHelpCircle, IconMoon,
   IconSettings
 } from "@tabler/icons-react";
-import Editor from '@monaco-editor/react';
+//import Editor from '@monaco-editor/react';
 
 const links = [
   { link: '', label: 'Home' },
   { link: '', label: 'Tutorial' },
   { link: '', label: 'Editor' },
 ];
+import dynamic from 'next/dynamic'
 
+import { Editor } from "@dgmjs/core";
+import { DGMEditor } from "@dgmjs/react";
 
 
 export default function Home() {
@@ -53,65 +56,87 @@ export default function Home() {
       </a>
     )
   })
+
+
+const CanvasEditorWithoutSSR = dynamic(
+  () => import("@/components/CanvasEditor"),
+  {
+    ssr: false,
+    loading: () => <p>Loading Infinite Canvas...</p>, // Optional skeleton loader
+  }
+);
+// Dynamically import your editor with SSR disable
+
+  const handleMount = async (editor: Editor) => {
+    editor.newDoc();
+    editor.fitToScreen();
+    window.addEventListener("resize", () => {
+      editor.fit();
+    });
+  };
+
   return (
-  <AppShell 
-    padding="sm"
-    header={{height: 60 }}
-    pt="sm"
-    >
-    <AppShell.Header className='flex items-center justify-around' >
-      <Group h='100%' className="flex items-center gap-4" >
-       <Image src={logo} alt="Site Logo" width={45} style={{borderRadius:5}}/>
-      <Title w="fit-content" visibleFrom="sm" h="fit-content" size='xl' > Tableau Lab</Title>
-      </Group>
-      <Group>
-          {items}
-        </Group>
-        <Group>
-          <Tooltip label="Source Code">
-            <ActionIcon component={"a"} target="_blank" href={""} size={"lg"} variant="default" aria-label="Source Code">
-              <IconBrandGithub style={{ width: '70%', height: '70%' }} stroke={1.5} />
-            </ActionIcon>
-          </Tooltip>
+  
+      <CanvasEditorWithoutSSR />
+    
+  // <AppShell 
+  //   padding="sm"
+  //   header={{height: 60 }}
+  //   pt="sm"
+  //   >
+  //   <AppShell.Header className='flex items-center justify-around' >
+  //     <Group h='100%' className="flex items-center gap-4" >
+  //      <Image src={logo} alt="Site Logo" width={45} style={{borderRadius:5}}/>
+  //     <Title w="fit-content" visibleFrom="sm" h="fit-content" size='xl' > Tableau Lab</Title>
+  //     </Group>
+  //     <Group>
+  //         {items}
+  //       </Group>
+  //       <Group>
+  //         <Tooltip label="Source Code">
+  //           <ActionIcon component={"a"} target="_blank" href={""} size={"lg"} variant="default" aria-label="Source Code">
+  //             <IconBrandGithub style={{ width: '70%', height: '70%' }} stroke={1.5} />
+  //           </ActionIcon>
+  //         </Tooltip>
 
 
 
-          <Tooltip label="Help">
-            <ActionIcon onClick={() => setHelpOpened(true)} size={"lg"} variant="default" aria-label="Help">
-              <IconHelpCircle style={{ width: '70%', height: '70%' }} stroke={1.5} />
-            </ActionIcon>
-          </Tooltip>
+  //         <Tooltip label="Help">
+  //           <ActionIcon onClick={() => setHelpOpened(true)} size={"lg"} variant="default" aria-label="Help">
+  //             <IconHelpCircle style={{ width: '70%', height: '70%' }} stroke={1.5} />
+  //           </ActionIcon>
+  //         </Tooltip>
 
-          <Tooltip label={`Switch to ${destColorMode} mode`}>
-            <ActionIcon size={"lg"} onClick={() => setColorScheme(destColorMode)} variant="default" aria-label="Toggle Color Mode">
-              {
-                nextJsColorScheme === "light"
-                  ? <IconMoon style={{ width: '70%', height: '70%' }} stroke={1.5} />
-                  : <IconBrightnessUp style={{ width: '70%', height: '70%' }} stroke={1.5} />
-              }
-            </ActionIcon>
-          </Tooltip>
-        </Group>
-    </AppShell.Header>
+  //         <Tooltip label={`Switch to ${destColorMode} mode`}>
+  //           <ActionIcon size={"lg"} onClick={() => setColorScheme(destColorMode)} variant="default" aria-label="Toggle Color Mode">
+  //             {
+  //               nextJsColorScheme === "light"
+  //                 ? <IconMoon style={{ width: '70%', height: '70%' }} stroke={1.5} />
+  //                 : <IconBrightnessUp style={{ width: '70%', height: '70%' }} stroke={1.5} />
+  //             }
+  //           </ActionIcon>
+  //         </Tooltip>
+  //       </Group>
+  //   </AppShell.Header>
 
-    <AppShell.Main h="100%">
-      <Stack h="100%">
-    <Split autoResizers w="100%" h="100%">
-      <Split.Pane w="100%" h="80vh">
-        <Paper  withBorder w="100%" h="90vh">
-            <Editor theme={destColorMode=== "light" ? "vs-dark": "light" } defaultLanguage="latex" defaultValue="// some comment" />
-          </Paper>
-      </Split.Pane>
-      <Split.Resizer h="70%"/>
-      <Split.Pane w="100%" h="90%" >
-        <Paper >
-        <TableauEditor size={10} />
-        </Paper>
-      </Split.Pane>
-    </Split>
-    </Stack>
-    </AppShell.Main>
-  </AppShell>
+  //   <AppShell.Main h="100%">
+  //     <Stack h="100%">
+  //   <Split autoResizers w="100%" h="100%">
+  //     <Split.Pane w="100%" h="80vh">
+  //       <Paper  withBorder w="100%" h="90vh">
+  //           <Editor theme={destColorMode=== "light" ? "vs-dark": "light" } defaultLanguage="latex" defaultValue="// some comment" />
+  //         </Paper>
+  //     </Split.Pane>
+  //     <Split.Resizer h="70%"/>
+  //     <Split.Pane w="100%" h="90%" >
+  //       <Paper >
+  //       <TableauEditor size={10} />
+  //       </Paper>
+  //     </Split.Pane>
+  //   </Split>
+  //   </Stack>
+  //   </AppShell.Main>
+  // </AppShell>
   
   );
 }

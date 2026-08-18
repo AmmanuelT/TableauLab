@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@dgmjs/core": "^1.5.5",
+    "@dgmjs/react": "^1.5.2",
     "@gfazioli/mantine-split-pane": "^4.1.10",
     "@mantine/core": "^9.5.1",
     "@mantine/hooks": "^9.5.1",
