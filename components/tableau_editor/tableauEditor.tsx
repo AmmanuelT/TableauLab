@@ -22,7 +22,7 @@ export const TableauEditor = ({size}: {size : number})  => {
                 <div  style={{ minWidth: 400}} >
                     {[...Array(size+1)].map((_,index) => (
                         
-                        <PinInput
+                        <Box
                         name="pin"
                         length={4}
                         oneTimeCode
