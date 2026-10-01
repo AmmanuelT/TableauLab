@@ -1,6 +1,6 @@
 [project]
 name = "tableaulab"
-version = "0.0.1"
+version = "0.0.6"
 authors = [
   { name="Ammanuel Tamrat", email="ammanueltamrat@gmail.com" },
 ]
@@ -19,3 +19,5 @@ dependencies = [
 [project.urls]
 Homepage = "https://github.com/AmmanuelT/TableauLab"
 Issues = "https://github.com/AmmanuelT/TableauLab/issues"
+[project.scripts]
+tableaulab = "tableaulab.tableaulab:main"

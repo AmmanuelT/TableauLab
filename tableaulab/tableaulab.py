@@ -1,7 +1,12 @@
 import functools
 from blessed import Terminal
 import sys
-import characters
+
+try:
+    from . import characters
+except ImportError:  # pragma: no cover - script execution fallback
+    import characters
+
 import textwrap
 import threading
 import argparse
@@ -358,8 +363,7 @@ class Cursor:
         self.grid.draw_cursor_cell(self.position)
 
     
-if __name__ == '__main__':
-
+def main():
     parser = argparse.ArgumentParser(
         prog='tableaulab',
         description="""tableaulab is a terminal-based staircase tableau editor interface. Use it to make, edit and export latex for staircaise tableaux.
@@ -370,8 +374,6 @@ if __name__ == '__main__':
 
     parser.add_argument('--size', action='store', type=int, help="""\
         size of the staircase tableau (default 5)""")
-
-    
 
     args = parser.parse_args()
     n = args.size
@@ -407,7 +409,7 @@ if __name__ == '__main__':
             n, n,
             ' and '.join(necessary_resize)))
         sys.exit(' '.join(exit_text.splitlines()))
-        
+
     echo(term.enter_fullscreen())
     echo(term.clear())
     software_version = '1.0.0'
@@ -424,7 +426,7 @@ if __name__ == '__main__':
 
     tableau.draw()
     cursor = Cursor((0,0), tableau)
-    
+
     toolbar = ''
     commands = [("^Q", "Quit"),
                 ("^C", "Copy to clipboard"),
@@ -451,16 +453,13 @@ if __name__ == '__main__':
         with term.location(x=n, y=term.height - 2):
             echo(toolbar)
 
-
-
     to_quit = not sys.stdout.isatty()
-
 
     info_location = {'x': n, 'y': n + 2 * n + 2}
 
     with term.raw(), term.hidden_cursor():
         while not to_quit:
-            
+
             keypress = term.inkey()
 
             if keypress.name == 'KEY_RIGHT':
@@ -477,7 +476,6 @@ if __name__ == '__main__':
                 cursor.set_selected_cell(0)
             elif keypress  == 'p':
                 break
-
 
             # ctrl-q
             if keypress.name == 'KEY_CTRL_Q':
@@ -516,6 +514,10 @@ if __name__ == '__main__':
 
                 else:
                     tableau.send_notification("Clear command canceled.")
+
+
+if __name__ == '__main__':
+    main()
 
 
          

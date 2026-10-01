@@ -31,7 +31,7 @@ setup(
     # For a discussion on single-sourcing the version across setup.py and the
     # project code, see
     # https://packaging.python.org/guides/single-sourcing-package-version/
-    version="0.0.1",  # Required
+    version="0.0.6",  # Required
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#summary
@@ -98,19 +98,9 @@ setup(
     # by commas, to be used to assist searching for the distribution in a
     # larger catalog.
     keywords="sample, setuptools, development",  # Optional
-    # When your source code is in a subdirectory under the project root, e.g.
-    # `src/`, it is necessary to specify the `package_dir` argument.
-    package_dir={"": "src"},  # Optional
-    # You can just specify package directories manually here if your project is
-    # simple. Or you can use find_packages().
-    #
-    # Alternatively, if you just want to distribute a single Python file, use
-    # the `py_modules` argument instead as follows, which will expect a file
-    # called `my_module.py` to exist:
-    #
-    #   py_modules=["my_module"],
-    #
-    packages=find_packages(where="src"),  # Required
+    # The package lives directly under the project root, so no custom package_dir
+    # is needed here.
+    packages=find_packages(),  # Required
     # Specify which Python versions you support. In contrast to the
     # 'Programming Language' classifiers above, 'pip install' will check this
     # and refuse to install the project if the version does not match. See
@@ -141,9 +131,9 @@ setup(
     # },
     # Entry points. The following would provide a command called `sample` which
     # executes the function `main` from this package when invoked:
-    entry_points={  # Optional
-        "console_scripts": [
-            "tableaulab=tableaulab:tableaulab",
+    entry_points={
+        'console_scripts': [
+            'tableaulab=tableaulab.tableaulab:main',
         ],
     },
     # List additional URLs that are relevant to your project as a dict.

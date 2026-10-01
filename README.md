@@ -18,12 +18,12 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
+<!-- [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![project_license][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 
 
@@ -31,7 +31,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="assets/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">TableauLab</h3>
@@ -68,13 +68,34 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+
+![Demo](./assets/demo.gif)
 
 TableauLab is a terminal interface for making, editing and exporting staircase tableau (a specific type of [Young tableau](https://en.wikipedia.org/wiki/Young_tableau)) to latex.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Getting Started
 
+Install the latest release from PyPI:
+
+```bash
+pip install tableaulab
+```
+
+Then run the CLI:
+
+```bash
+tableaulab --help
+```
+
+To create a tableau with a specific size:
+
+```bash
+tableaulab --size 5
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Roadmap
 
@@ -88,12 +109,12 @@ TableauLab is a terminal interface for making, editing and exporting staircase t
 
 
 
-<!-- GETTING STARTED -->
+<!-- GETTING STARTED
 ### Top contributors:
 
 <a href="https://github.com/AmmanuelT/TableauLab/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=github_username/repo_name" alt="contrib.rocks image" />
-</a>
+</a> -->
 
 
 
