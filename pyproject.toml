@@ -13,7 +13,9 @@ classifiers = [
 ]
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
-
+dependencies = [
+  "blessed"
+]
 [project.urls]
 Homepage = "https://github.com/AmmanuelT/TableauLab"
 Issues = "https://github.com/AmmanuelT/TableauLab/issues"

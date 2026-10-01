@@ -1,6 +1,3 @@
-import curses
-from curses import wrapper
-from curses.textpad import rectangle
 import functools
 from blessed import Terminal
 import sys
