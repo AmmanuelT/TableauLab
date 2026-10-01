@@ -1,0 +1,19 @@
+[project]
+name = "tableaulab"
+version = "0.0.1"
+authors = [
+  { name="Ammanuel Tamrat", email="ammanueltamrat@gmail.com" },
+]
+description = "A TUI for tableau"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/AmmanuelT/TableauLab"
+Issues = "https://github.com/AmmanuelT/TableauLab/issues"
